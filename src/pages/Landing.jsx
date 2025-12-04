@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 export default function Landing() {
     return (
         <div className="min-h-screen bg-linear-to-br from-white to-green-50">
-            <div className="container mx-auto px-6 pt-6 pb-0.5 max-w-4xl">
-                {/* Header */}
+            <div className="container mx-auto px-6 pt-4 pb-4 max-w-4xl">
+            
                 <header className="text-center mb-16">
                     <div className="flex justify-center mb-6">
                         <img src="../../public/Logo.png" alt="logo" className='w-20 h-20 rounded-4xl flex items-center justify-center shadow-lg'/>
@@ -18,7 +18,6 @@ export default function Landing() {
                     </p>
                 </header>
 
-                {/* Main Content */}
                 <main className="p-4 md:p-1">
                     <section className="mb-10">
                         <h2 className="text-3xl font-semibold text-gray-800 mb-6">
@@ -89,7 +88,6 @@ export default function Landing() {
                     </div>
                 </main>
 
-                {/* Footer */}
                 <footer className="text-center mt-12 text-gray-600">
                     <p className="text-sm">Organiza tu vida universitaria de forma simple</p>
                 </footer>

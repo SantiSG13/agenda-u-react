@@ -1,9 +1,9 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import NavBar from '../components/NavBar'
-import Horario from './DasboardSections/Horario'
-import Calificaciones from './DasboardSections/Calificaciones'
-import Apuntes from './DasboardSections/Apuntes'
+import Horario from './DashboardSections/Horario'
+import Calificaciones from './DashboardSections/Calificaciones'
+import Apuntes from './DashboardSections/Apuntes'
 
 export default function Dashboard() {
     return (
