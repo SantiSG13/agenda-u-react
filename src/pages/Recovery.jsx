@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import Input from '../components/UI/Input'
+import Button from '../components/UI/Button'
 
 export default function Recovery() {
     const [email, setEmail] = useState('')
@@ -40,27 +42,19 @@ export default function Recovery() {
 
                     {!enviado ? (
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="email">
-                                    Correo Electrónico
-                                </label>
-                                <input 
-                                    id="email"
-                                    type="email"
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#26667F] focus:ring-2 focus:ring-[#26667F]/20 outline-none transition-all duration-200 bg-gray-50 hover:bg-white"
-                                    value={email} 
-                                    onChange={(e) => setEmail(e.target.value)} 
-                                    placeholder="ejemplo@universidad.edu.co"
-                                    required
-                                />
-                            </div>
+                            <Input
+                                label="Correo Electrónico"
+                                id="email"
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="ejemplo@universidad.edu.co"
+                                required
+                            />
 
-                            <button 
-                                type="submit"
-                                className="w-full bg-linear-to-r from-[#67C090] to-[#26667F] text-white font-bold py-3.5 px-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-                            >
+                            <Button type="submit">
                                 Enviar
-                            </button>
+                            </Button>
                         </form>
                     ) : (
                         <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">

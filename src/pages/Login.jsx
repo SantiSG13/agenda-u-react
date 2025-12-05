@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import Input from '../components/UI/Input'
+import Button from '../components/UI/Button'
 
 export default function Login() {
     const [usuario, setUsuario] = useState('')
@@ -41,18 +43,13 @@ export default function Login() {
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="username">
-                                Usuario
-                            </label>
-                            <input 
-                                id="username"
-                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#26667F] focus:ring-2 focus:ring-[#26667F]/20 outline-none transition-all duration-200 bg-gray-50 hover:bg-white"
-                                value={usuario} 
-                                onChange={(e) => setUsuario(e.target.value)} 
-                                placeholder="Ej. estudiante123"
-                            />
-                        </div>
+                        <Input
+                            label="Usuario"
+                            id="username"
+                            value={usuario}
+                            onChange={(e) => setUsuario(e.target.value)}
+                            placeholder="Ej. estudiante123"
+                        />
                         
                         <div>
                             <div className="flex items-center justify-between mb-2">
@@ -63,22 +60,18 @@ export default function Login() {
                                     ¿Olvidaste tu contraseña?
                                 </Link>
                             </div>
-                            <input 
+                            <Input
                                 id="password"
-                                type="password" 
-                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#26667F] focus:ring-2 focus:ring-[#26667F]/20 outline-none transition-all duration-200 bg-gray-50 hover:bg-white"
-                                value={password} 
-                                onChange={(e) => setPassword(e.target.value)} 
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
                             />
                         </div>
 
-                        <button 
-                            type="submit"
-                            className="w-full bg-linear-to-r from-[#67C090] to-[#26667F] text-white font-bold py-3.5 px-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-                        >
+                        <Button type="submit" variant="primary">
                             Iniciar Sesión
-                        </button>
+                        </Button>
                     </form>
 
                     <div className="mt-8 text-center">
