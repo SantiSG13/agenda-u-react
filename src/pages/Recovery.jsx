@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Input from '../components/UI/Input'
 import Button from '../components/UI/Button'
+import FloatingHeader from '../components/UI/FloatingHeader'
 
 export default function Recovery() {
     const [email, setEmail] = useState('')
@@ -17,10 +18,7 @@ export default function Recovery() {
     return (
         <div className="flex min-h-screen bg-white overflow-hidden flex-row-reverse relative">
             {/* Header Flotante */}
-            <Link to="/" className="absolute top-6 right-6 flex items-center gap-2 z-50 hover:opacity-80 transition-opacity p-2 bg-white/50 backdrop-blur-sm rounded-xl">
-                <img src="/Logo.png" alt="Logo" className="w-8 h-8 rounded-lg" />
-                <span className="font-bold text-gray-800 text-lg hidden sm:block">Agenda U</span>
-            </Link>
+            <FloatingHeader position="right" />
 
             {/* Sección Derecha (Formulario) */}
             <motion.div 
