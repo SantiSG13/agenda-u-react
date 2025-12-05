@@ -18,14 +18,17 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recovery" element={<Recovery />} />
+        
+        {/* Rutas Protegidas del Dashboard */}
         <Route
-          path="/dashboard/*"
+          path="/dashboard"
           element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
           }
         />
+        
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </AnimatePresence>
