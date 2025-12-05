@@ -77,7 +77,7 @@ export default function Landing() {
                     >
                         <Link 
                             to="/register"
-                            className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#67C090] to-[#26667F] text-white rounded-full font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+                            className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#67C090] to-[#26667F] text-white rounded-full font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
                         >
                             Comenzar Gratis
                         </Link>
