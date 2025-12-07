@@ -86,5 +86,19 @@ export const dataService = {
             notes: dataService.notes.getAll().filter(n => n.materiaId === subjectId),
             tasks: dataService.tasks.getAll().filter(t => t.materiaId === subjectId)
         };
+    },
+
+    // ADMIN: Estadísticas Globales
+    getSystemStats: () => {
+        // Leemos directo de localStorage para evadir el filtro de userId y contar TODO
+        const users = JSON.parse(localStorage.getItem('agenda_users') || '[]');
+        const subjects = JSON.parse(localStorage.getItem(KEYS.SUBJECTS) || '[]');
+        const tasks = JSON.parse(localStorage.getItem(KEYS.TASKS) || '[]');
+        
+        return {
+            totalUsers: users.length,
+            totalSubjects: subjects.length,
+            totalTasks: tasks.length
+        };
     }
 };

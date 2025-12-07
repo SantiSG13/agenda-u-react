@@ -13,8 +13,11 @@ export const authService = {
       throw new Error('El correo electrónico ya está registrado.');
     }
 
+    // Rol de Administrador si el correo es admin@agendau.com
+    const role = userData.email === 'admin@agendau.com' ? 'admin' : 'user';
+
     // Agregar nuevo usuario
-    const newUser = { ...userData, id: Date.now() };
+    const newUser = { ...userData, role, id: Date.now() };
     users.push(newUser);
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
     
@@ -51,5 +54,18 @@ export const authService = {
   // Verificar si hay sesión activa
   isAuthenticated: () => {
     return !!localStorage.getItem(CURRENT_USER_KEY);
+  },
+
+  // ADMIN: Obtener todos los usuarios
+  getAllUsers: () => {
+    const users = JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
+    return users.map(({ password, ...u }) => u); // Retornar sin contraseña
+  },
+
+  // ADMIN: Eliminar usuario
+  deleteUser: (id) => {
+    const users = JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
+    const newUsers = users.filter(u => u.id !== id);
+    localStorage.setItem(USERS_KEY, JSON.stringify(newUsers));
   }
 };
