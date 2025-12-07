@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Input from '../components/UI/Input'
 import Button from '../components/UI/Button'
 import FloatingHeader from '../components/UI/FloatingHeader'
+import { authService } from '../services/authService'
 
 export default function Register() {
     const [formData, setFormData] = useState({
@@ -12,18 +13,33 @@ export default function Register() {
         password: '',
         confirmPassword: ''
     })
+    const [error, setError] = useState('')
     const navigate = useNavigate()
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value })
+        setError('')
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // Aquí iría la lógica de registro real
-        localStorage.setItem('agendaU_user', 'true')
-        localStorage.setItem('agendaU_username', formData.nombre || 'Estudiante')
-        navigate('/dashboard')
+        
+        if (formData.password !== formData.confirmPassword) {
+            setError('Las contraseñas no coinciden')
+            return
+        }
+
+        try {
+            authService.register({
+                nombre: formData.nombre,
+                email: formData.email,
+                password: formData.password
+            })
+            alert('Registro exitoso. Por favor inicia sesión.')
+            navigate('/login')
+        } catch (err) {
+            setError(err.message)
+        }
     }
 
     return (
@@ -48,6 +64,12 @@ export default function Register() {
                             Únete y organiza tu vida académica.
                         </p>
                     </div>
+
+                    {error && (
+                        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm">
+                            {error}
+                        </div>
+                    )}
 
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <Input

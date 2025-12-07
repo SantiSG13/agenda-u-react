@@ -4,17 +4,24 @@ import { motion } from 'framer-motion'
 import Input from '../components/UI/Input'
 import Button from '../components/UI/Button'
 import FloatingHeader from '../components/UI/FloatingHeader'
+import { authService } from '../services/authService'
 
 export default function Login() {
-    const [usuario, setUsuario] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        localStorage.setItem('agendaU_user', 'true')
-        localStorage.setItem('agendaU_username', usuario || 'Estudiante')
-        navigate('/dashboard')
+        setError('')
+
+        try {
+            authService.login(email, password)
+            navigate('/dashboard')
+        } catch (err) {
+            setError(err.message)
+        }
     }
 
     return (
@@ -40,13 +47,20 @@ export default function Login() {
                         </p>
                     </div>
 
+                    {error && (
+                        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm">
+                            {error}
+                        </div>
+                    )}
+
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <Input
-                            label="Usuario"
-                            id="username"
-                            value={usuario}
-                            onChange={(e) => setUsuario(e.target.value)}
-                            placeholder="Ej. estudiante123"
+                            label="Correo Electrónico"
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="ejemplo@universidad.edu.co"
                         />
                         
                         <div>
