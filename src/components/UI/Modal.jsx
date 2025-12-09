@@ -14,24 +14,29 @@ export default function Modal({ isOpen, onClose, title, children }) {
     }, [isOpen]);
 
     return (
+        // AnimatePresence permite animar el modal cuando aparece/desaparece
+        // No necesita mode="wait" porque no hay transiciones entre diferentes modales
         <AnimatePresence>
             {isOpen && (
                 <>
-                    {/* Backdrop */}
+                    {/* Backdrop - Fondo oscuro semitransparente detrás del modal */}
                     <motion.div
                         className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={onClose}
+                        // Animación simple: solo fade in/out
+                        initial={{ opacity: 0 }}        // Empieza transparente
+                        animate={{ opacity: 1 }}        // Se vuelve visible
+                        exit={{ opacity: 0 }}           // Se desvanece al cerrar
+                        onClick={onClose}               // Cierra el modal al hacer clic fuera
                     />
                     
-                    {/* Modal Content */}
+                    {/* Modal Content - La ventana del modal con su contenido */}
                     <motion.div
                         className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
-                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                        // Animación combinada: fade + scale + movimiento vertical
+                        // Crea un efecto de "pop-up" profesional
+                        initial={{ opacity: 0, scale: 0.95, y: 20 }}  // Empieza invisible, pequeño y abajo
+                        animate={{ opacity: 1, scale: 1, y: 0 }}      // Crece a tamaño completo y sube
+                        exit={{ opacity: 0, scale: 0.95, y: 20 }}     // Se encoge y baja al cerrar
                     >
                         <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg pointer-events-auto max-h-[90vh] flex flex-col">
                             {/* Header */}

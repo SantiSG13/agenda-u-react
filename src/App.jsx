@@ -9,10 +9,18 @@ import Dashboard from './pages/Dashboard'
 import PrivateRoute from './components/PrivateRoute'
 
 function App() {
+  // useLocation() obtiene la ubicación actual de React Router
+  // Es necesario para que AnimatePresence detecte cambios de ruta
   const location = useLocation()
 
   return (
+    // AnimatePresence permite animar componentes cuando se montan/desmontan del DOM
+    // mode="wait" hace que espere a que la página actual termine su animación de salida
+    // antes de mostrar la nueva página, evitando superposiciones
     <AnimatePresence mode="wait">
+      {/* key={location.pathname} es crucial: crea una clave única para cada ruta
+          Cuando cambia la ruta, React detecta el cambio de key y activa las animaciones
+          definidas en cada página (initial, animate, exit) */}
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
