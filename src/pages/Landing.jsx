@@ -40,16 +40,22 @@ export default function Landing() {
                 </div>
 
                 <div className="container mx-auto max-w-5xl relative z-10 text-center">
+                    {/* ANIMACIÓN ESCALONADA (Staggered Animation)
+                        Cada elemento tiene el mismo patrón de animación (opacity: 0→1, y: 20→0)
+                        pero con diferentes delays para crear un efecto de cascada visual */}
+                    
+                    {/* 1. Badge - Sin delay (aparece primero) */}
                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.5 }}  // delay: 0 (por defecto)
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 border border-green-100 text-[#26667F] text-xs font-semibold mb-8 uppercase tracking-wide"
                     >
                         <span className="w-2 h-2 rounded-full bg-[#26667F] animate-pulse"></span>
                         Tu compañero universitario ideal
                     </motion.div>
 
+                    {/* 2. Título principal - Aparece 0.1s después del badge */}
                     <motion.h1 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -62,6 +68,7 @@ export default function Landing() {
                         </span>
                     </motion.h1>
 
+                    {/* 3. Descripción - Aparece 0.2s después del badge */}
                     <motion.p 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -71,6 +78,7 @@ export default function Landing() {
                         Horarios, calificaciones, apuntes y tareas en un solo lugar. Simplifica tu semestre y alcanza tus metas académicas con Agenda U.
                     </motion.p>
 
+                    {/* 4. Botón CTA - Aparece 0.3s después del badge (último elemento de la cascada) */}
                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -85,6 +93,8 @@ export default function Landing() {
                         </Link>
                     </motion.div>
 
+                     {/* 5. Estadística - Solo fade in, sin movimiento vertical
+                         Aparece sutilmente después de los elementos principales */}
                      <motion.div 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
