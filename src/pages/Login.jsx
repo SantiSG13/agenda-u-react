@@ -29,11 +29,18 @@ export default function Login() {
             {/* Header Flotante */}
             <FloatingHeader />
 
+            {/* ANIMACIÓN DE ENTRADA LATERAL - Formulario desde la izquierda
+                Este patrón crea un efecto de "puertas que se abren" donde ambos lados
+                se deslizar hacia el centro desde direcciones opuestas */}
+            
             {/* Sección Izquierda - Formulario */}
             <motion.div 
                 className="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16 lg:px-24 py-12"
+                // Entrada: Viene desde la izquierda (x: -50px)
                 initial={{ opacity: 0, x: -50 }}
+                // Estado final: Centrado en su posición (x: 0)
                 animate={{ opacity: 1, x: 0 }}
+                // Salida: Se va hacia la izquierda nuevamente
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.5 }}
             >
@@ -100,8 +107,12 @@ export default function Login() {
             {/* Sección Derecha - Imagen */}
             <motion.div 
                 className="hidden md:block md:w-1/2 relative overflow-hidden"
+                // Entrada: Viene desde la derecha (x: 50px) - dirección opuesta al formulario
                 initial={{ opacity: 0, x: 50 }}
+                // Estado final: Centrado en su posición (x: 0)
                 animate={{ opacity: 1, x: 0 }}
+                // Salida: Se va hacia la derecha nuevamente
+                // Resultado: Efecto visual de "cortinas abriéndose"
                 exit={{ opacity: 0, x: 50 }}
                 transition={{ duration: 0.5 }}
             >
