@@ -460,7 +460,7 @@ animate={{ opacity: 1, x: 0 }}
 ```
 
 **Uso:** Login, Register, Recovery
-**Efecto:** Los paneles se deslizar lateralmente
+**Efecto:** Los paneles se deslizan lateralmente
 
 ### 3. **Animaciones Escalonadas**
 
